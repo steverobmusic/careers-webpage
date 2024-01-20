@@ -7,7 +7,9 @@
     <style>
         body {
             margin: 0;
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9f9f9;
+            transition: background-color 0.3s ease;
         }
 
         .login-bar {
@@ -29,11 +31,17 @@
             padding: 10px;
             border: none;
             cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .login-btn button:hover {
+            background-color: #45a049;
         }
 
         header {
             background-color: #f4f4f4;
             padding: 10px;
+            transition: background-color 0.3s ease;
         }
 
         .menu {
@@ -47,8 +55,56 @@
             margin-right: 20px;
         }
 
+        .menu li a {
+            text-decoration: none;
+            color: #333;
+            transition: color 0.3s ease;
+        }
+
+        .menu li a:hover {
+            color: #007BFF;
+        }
+
         .job-listings {
             padding: 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        .filters-menu {
+            position: fixed;
+            left: -300px;
+            top: 0;
+            height: 100%;
+            width: 300px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: left 0.3s ease;
+        }
+
+        .toggle-btn {
+            position: fixed;
+            left: 0;
+            top: 10px;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .toggle-btn:hover {
+            background-color: #ddd;
+        }
+
+        .toggle-btn img {
+            width: 20px;
+            height: 20px;
+        }
+
+        .checkbox-container {
+            padding: 10px;
+        }
+
+        .checkbox-container label {
+            display: block;
+            margin-bottom: 10px;
         }
     </style>
 </head>
@@ -72,6 +128,23 @@
         </nav>
     </header>
 
+    <div class="toggle-btn" onclick="toggleFilters()">
+        <img src="https://cdn.iconscout.com/icon/free/png-256/menu-463271.png" alt="Toggle Menu">
+    </div>
+
+    <div class="filters-menu">
+        <div class="checkbox-container">
+            <label><input type="checkbox" name="position" value="full-time"> Full-time</label>
+            <label><input type="checkbox" name="position" value="casual"> Casual</label>
+            <label><input type="checkbox" name="position" value="temporary"> Temporary</label>
+        </div>
+        <div class="checkbox-container">
+            <label><input type="checkbox" name="environment" value="remote"> Remote</label>
+            <label><input type="checkbox" name="environment" value="hybrid"> Hybrid</label>
+            <label><input type="checkbox" name="environment" value="in-person"> In-person</label>
+        </div>
+    </div>
+
     <main>
         <section class="job-listings">
             <!-- Display your job listings here -->
@@ -84,6 +157,22 @@
         function showLoginModal() {
             // Implement your login modal display logic here
             alert('Login functionality will be implemented here.');
+        }
+
+        function toggleFilters() {
+            const filtersMenu = document.querySelector('.filters-menu');
+            const toggleBtn = document.querySelector('.toggle-btn');
+            const body = document.querySelector('body');
+
+            if (filtersMenu.style.left === '-300px') {
+                filtersMenu.style.left = '0';
+                toggleBtn.style.left = '300px';
+                body.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+            } else {
+                filtersMenu.style.left = '-300px';
+                toggleBtn.style.left = '0';
+                body.style.backgroundColor = '#f9f9f9';
+            }
         }
     </script>
 </body>
